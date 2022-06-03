@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -33,11 +34,12 @@ public class SeleniumWebSignInTest {
 
     @Test (priority = 0)
         public void negativeSignIn() throws InterruptedException {
+        //Test 1. User cannot login with Invalid email or password
         //5.Input Email address in the Email Address or Phone Number field
-        driver.findElement(By.id("username")).sendKeys("ogochukwu@mailinatior.com");
+        driver.findElement(By.id("username")).sendKeys("ogochukwumailinatior.");
 
         //6.Input Password in the Password field
-        driver.findElement(By.id("password")).sendKeys("ogochukwu@mailinatior.com");
+        driver.findElement(By.id("password")).sendKeys("ogocor.com");
         //7.Click on login button
         driver.findElement(By.xpath("//*[@id=\"app-content-wrapper\"]/div[4]/section/section/aside/div[2]/div/form/div[3]/button")).click();
         //Wait again for 5ms
@@ -45,18 +47,18 @@ public class SeleniumWebSignInTest {
     }
     @Test (priority = 1)
         public void Clickonlogout() throws InterruptedException {
+        //Test 2. Verify that user can logout successfully
         //8.Click logout
         driver.findElement(By.name("logout")).click();
         Thread.sleep(5000);
     }
     @Test (priority = 2)
         public void positiveSignIn() throws InterruptedException {
-            //
+            //Test 3. User can login with registered  email and password
             //5.Input Email address in the Email Address or Phone Number field
-            driver.findElement(By.id("username")).sendKeys("ogochukwu@mailinatior.");
-
+            driver.findElement(By.id("username")).sendKeys("ogochukwu@mailinatior.com");
             //6.Input Password in the Password field
-            driver.findElement(By.id("password")).sendKeys("ogochukwu@mailinatior.");
+            driver.findElement(By.id("password")).sendKeys("ogochukwu@mailinatior.com");
             //7.Click on login button
             driver.findElement(By.xpath("//*[@id=\"app-content-wrapper\"]/div[4]/section/section/aside/div[2]/div/form/div[3]/button")).click();
             //Wait again for 5ms
@@ -65,10 +67,12 @@ public class SeleniumWebSignInTest {
         }
     @Test (priority = 3)
         public void ClickonlogoutAgain() throws InterruptedException {
+        //Test 4. Verify that user can logout successfully
            //8.Click logout
             driver.findElement(By.name("logout")).click();
             Thread.sleep(5000);
         }
+        @AfterTest
         private void closeBrowser() {
             //9.close browser
             driver.quit();
